@@ -1,0 +1,21 @@
+.navBar-container{
+  height: 5vh;
+}
+header.navBar-container{
+  height:5vh;
+  background-color: rgb(209, 208, 207);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+button.navBar-menu-button{
+  margin-bottom: 20px;
+}
+/* app layout */
+.layout-container{
+  display: flex;
+  height: 95vh;
+}
+div.layout-child-fixed {
+  width:320px;
+  border-right:0.5px solid gray;
+}

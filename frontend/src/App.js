@@ -1,11 +1,12 @@
 import './App.css';
 import MainComponent from './components/MainComponent';
+import ServiceContextProvider from './services/serviceContext';
 
 function App() {
   return (
-    <div >
+    <ServiceContextProvider>
       <MainComponent/>
-    </div>
+    </ServiceContextProvider>
   );
 }
 

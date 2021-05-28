@@ -19,3 +19,9 @@ div.layout-child-fixed {
   width:320px;
   border-right:0.5px solid gray;
 }
+fieldset.radio-btns,
+ul.tree-view,
+div.MuiFormControl-root .search-input
+{
+  padding-left: 15px ;
+}

@@ -1,12 +1,12 @@
 import React from 'react';
-import Layout from './Layout';
+import TreeComponent from './TreeComponent'
 import NavBar from './NavBar'
 
 function MainComponent() {
     return (
         <>
         <NavBar/>    
-        <Layout/>
+        <TreeComponent/>
         </>
     )
 }

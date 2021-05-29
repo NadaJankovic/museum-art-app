@@ -17,10 +17,42 @@ button.navBar-menu-button{
 }
 div.layout-child-fixed {
   width:320px;
+  min-width: 320px;
   border-right:0.5px solid gray;
 }
 
+div.item-container{
+  display: flex;
+  flex-direction: column;
+}
+ div.img-container{
+  height:40%;
+  margin: auto;
+
+ }
+div.img-container img{
+  padding: 30px 10px;
+  width: 280px;
+
+}
+div.item-descripition{
+  padding:15px;
+  height: 60%;
+  border-top:0.5px solid gray;
+}
+.edit-btn-container{
+  display: flex;
+  justify-content: space-between;
+}
+button.edit-btn{
+  width:120px;
+  background-color: rgb(24, 173, 241);
+
+}
 /* aligment of TreeComponent structures */
+fieldset.radio-btns {
+  padding-top: 10px;;
+}
 fieldset.radio-btns,
 ul.tree-view,
 div.MuiFormControl-root.search-input

@@ -25,10 +25,11 @@ class MainService extends BaseService {
     async getItemById(id) {
         try {
             // get item by id and save it to local storage
-                const response = await fetch(`${this.backendURl}/getCollectionById/${id}`);
+            const response = await fetch(`${this.backendURl}/getCollectionById/${id}`)
                 const data = await response.json();
-                localStorage.setItem('artItem', JSON.stringify(data))
-                return JSON.parse(localStorage.getItem('artItem'))
+                console.log(data)
+              const savedToStorage= localStorage.setItem('artItem', JSON.stringify(data));
+                return JSON.parse( localStorage.getItem('artItem'));
         } catch (err) {
             console.log(err)
         }

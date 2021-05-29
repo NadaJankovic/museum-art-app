@@ -11,17 +11,7 @@ function MainComponent() {
     const [departmentInfo, setDepartmentInfo] = useState([]);
     const [searchInput, setSearchInput] = useState('');
     const [radioValue, setRadioValue] = useState("all");
-    const [artItem, setArtItem] = useState([]);
-
-    const fetchItemById = async () => {
-        //some arbitrary id
-        const id = '103';
-        const collectionItemById = await service.mainService.getItemById(id);
-        setArtItem(collectionItemById);
-    }
-    useEffect(() => {
-        fetchItemById()
-    }, [])
+    const [itemId, setItemId] = useState('');
 
     const handleChange = (event) => {
         setRadioValue(event.target.value);
@@ -29,9 +19,7 @@ function MainComponent() {
     const handleInputChange = (event) => {
         setSearchInput(event.target.value)
     }
-    const clearInputField = () => {
-        setSearchInput('')
-    };
+  
     const filterData = () => {
         const filterArt = departmentInfo.map(el => {
             return {
@@ -58,11 +46,12 @@ function MainComponent() {
             <NavBar />
             <div className='layout-container'>
                 <div className='layout-child-fixed'>
-                    <SearchBarComponent radioValue={radioValue} handleChange={handleChange} handleInputChange={handleInputChange} clearInputField={clearInputField} />
-                    <TreeComponent museumArtData={museumArtData} departmentInfo={[...filterData()]} />
+                    <SearchBarComponent radioValue={radioValue} handleChange={handleChange} handleInputChange={handleInputChange} />
+                    <TreeComponent museumArtData={museumArtData} departmentInfo={[...filterData()]} setItemId={setItemId} />
                 </div>
                 <div className='layout-child'>
-                    <ScreenDetailComponent artItem={artItem} />
+                    <ScreenDetailComponent itemId={itemId} />
+
                 </div>
             </div>
         </>

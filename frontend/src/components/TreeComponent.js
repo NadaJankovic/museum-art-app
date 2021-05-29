@@ -5,6 +5,7 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TreeItem from "@material-ui/lab/TreeItem";
 
 function TreeComponent (props) {
+  
     return (
         <TreeView
         className='tree-view'
@@ -14,9 +15,9 @@ function TreeComponent (props) {
     > {props.museumArtData.map(el =>
         <TreeItem key= {el.id } nodeId={el.id} label={el.name}>
           {props.departmentInfo.map(depart =>
-                <TreeItem key= {depart.id } nodeId={depart.id} label={depart.name}>
+                <TreeItem  key= {depart.id } nodeId={depart.id} label={depart.name}>
                     {depart.collection.map(item =>
-                        <TreeItem key= {item.id} nodeId={item.id} label={item.name} />
+                       <a href='#' className='art-item'> <TreeItem key= {item.id} nodeId={item.id} label={item.name} onClick={()=> props.setItemId(item.id)} /></a> 
                     )}
                 </TreeItem>
             )}

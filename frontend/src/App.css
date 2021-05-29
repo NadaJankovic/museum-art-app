@@ -20,7 +20,7 @@ div.layout-child-fixed {
   min-width: 320px;
   border-right:0.5px solid gray;
 }
-
+/* screen detail preview */
 div.item-container{
   display: flex;
   flex-direction: column;
@@ -49,6 +49,16 @@ button.edit-btn{
   background-color: rgb(24, 173, 241);
 
 }
+a.art-item {
+  color:rgb(0,0,0);
+}
+a.art-item:hover{
+color: rgb(24, 173, 241); ;
+}
+a.art-item:link{
+  text-decoration: none;
+}
+
 /* aligment of TreeComponent structures */
 fieldset.radio-btns {
   padding-top: 10px;;

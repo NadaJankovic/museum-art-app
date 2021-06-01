@@ -69,3 +69,37 @@ div.MuiFormControl-root.search-input
 {
   padding-left: 15px ;
 }
+/* edit item page */
+div.edit-form-container {
+flex:1;
+border-right:0.5px solid gray;
+}
+div.preview-container {
+flex:1;
+}
+div.edit-input-field {
+  display: flex;
+  flex-direction: column;
+  max-width:500px;
+  margin: auto;
+  padding-top: 20px;
+  
+}
+
+div.save-preview-btns{
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 20px;
+}
+button.preview-btn {
+  width:120px;
+  background-color: rgb(24, 173, 241); ;
+}
+button.save-btn {
+  width:120px;
+  background-color: rgb(24, 173, 241); ;
+  margin-right: 10px;
+}
+div.input-text {
+  margin-bottom: 10px;
+}

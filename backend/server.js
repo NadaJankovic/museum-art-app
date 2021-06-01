@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require ('cors');
-const logger = require('morgan'); 
+const logger = require('morgan');
 const app = express();
 app.use(cors());
 const port =  3001;
 app.use(logger('dev'));
 
- app.use(express.urlencoded({extended:true}));
- app.use(express.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 const tree= require('./tree');
 const collection= require('./collection')
 
@@ -20,23 +20,22 @@ app.get('/getCollection', (req, res) => {
             msg:'Some error occured'
         })
     }
-  
-  })
+
+})
 
 // filter data by id from collection file
-app.get('/getCollectionById/:id', (req,res)=>{
-    try{
-    console.log(req.params.id)
-    let id= req.params.id;
-    let filteredItem= collection.filter(el=>el.id == id);
-    res.send(filteredItem)
-    }catch(err){
+app.get('/getCollectionById/:id', (req, res) => {
+    try {
+        let id = req.params.id;
+        let filteredItem= collection.filter(el => el.id == id);
+        res.status(200).send(filteredItem)
+    } catch (err) {
         res.status(400).json({
-            msg:'Some error occured.'
+            msg: 'Some error occured.'
         })
     }
 })
-app.listen(port,()=>{
+app.listen(port, () => {
     console.log(`App listening on port ${port}!`)
 })
-module.exports= app;
+module.exports = app;

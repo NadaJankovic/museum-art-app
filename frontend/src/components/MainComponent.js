@@ -16,14 +16,12 @@ function MainComponent() {
     const [showEditComponent, setShowEditComponent] = useState(false);
     const [artItem, setArtItem] = useState({});
 
-
     const handleChange = (event) => {
         setRadioValue(event.target.value);
     }
     const handleInputChange = (event) => {
         setSearchInput(event.target.value)
     }
-
     const filterData = () => {
         const filterArt = departmentInfo.map(el => {
             return {
@@ -34,22 +32,25 @@ function MainComponent() {
         })
         return filterArt
     }
-
     const fetchTreeData = async () => {
-        const storageTree = JSON.parse(localStorage.getItem('treeData'));
+        const storage = JSON.parse(localStorage.getItem('departInfo'));
+        const getTree = JSON.parse(localStorage.getItem('treeData'))
+        if (storage || getTree) {
+            setMuseumArtData([getTree]);
+            setDepartmentInfo(storage)
+        } else {
             const treeData = await service.mainService.getCollection();
-            setMuseumArtData([treeData]);
-            setDepartmentInfo(treeData.collection)
+            setMuseumArtData([treeData.tree]);
+            setDepartmentInfo(treeData.depart)
+        }
     }
-
     useEffect(() => {
         fetchTreeData();
-    }, []);
-
+    }, [showEditComponent]);
 
     // conditional rendering
     if (showEditComponent) {
-        return <Edit_PreviewItem itemId={itemId} artItem={artItem} setArtItem={setArtItem}  setShowEditComponent={setShowEditComponent} setDepartmentInfo={setDepartmentInfo} departmentInfo={[...filterData()]} />
+        return <Edit_PreviewItem itemId={itemId} artItem={artItem} setArtItem={setArtItem} setDepartmentInfo={setDepartmentInfo} setShowEditComponent={setShowEditComponent} setDepartmentInfo={setDepartmentInfo} departmentInfo={[...filterData()]} />
     } else {
 
         return (

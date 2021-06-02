@@ -6,13 +6,13 @@ function Edit_PreviewItem(props) {
     const { artItem } = props;
     const { setArtItem } = props;
     const { setShowEditComponent } = props;
+    const {setDepartmentInfo} = props;
     const [showPreview, setShowPreview] = useState(false);
     const [editedArt, setEditedArt] = useState(artItem);
 
     const handleChange = (e) => {
         setEditedArt({ ...editedArt, [e.target.name]: e.target.value })
     }
-
     const saveItem = () => {
         // find if item exists in storage and update it with edited object
         let storageCollection = JSON.parse(localStorage.getItem('artItem'));
@@ -27,20 +27,25 @@ function Edit_PreviewItem(props) {
             let storage = localStorage.setItem('artItem', JSON.stringify(update));
             setArtItem(update)
             setShowEditComponent(false);
-        }    /*  const filterDepart = departmentInfo.map(el => {
+        }
+        const departInfo = JSON.parse(localStorage.getItem('departInfo'));
+
+        //update department list
+        const filterDepart = departInfo.map(el => {
             return {
-                ...el, collection: el.collection.map(item => item.id === artItem.id ?
-                    {
-                        id: item.id,
-                        type: item.type,
-                        name: artItem.name,
-                        collection:item.collection
-                    } : item)
+                ...el, collection: el.collection.map(item =>
+                    item.id === editedArt.id ?
+                        {
+                            id: item.id,
+                            name: editedArt.name,
+                            type: item.type,
+                            collection:item.collection
+                        } :
+                        item)
             }
         })
- console.log(filterDepart) */
-
         let storage = localStorage.setItem('artItem', JSON.stringify(editedArt));
+        let departStorage = localStorage.setItem('departInfo', JSON.stringify(filterDepart));
         setArtItem([editedArt])
         setShowEditComponent(false);
     }

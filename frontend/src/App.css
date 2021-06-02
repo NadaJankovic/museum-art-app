@@ -89,7 +89,7 @@ div.edit-input-field {
 div.save-preview-btns{
   display: flex;
   justify-content: flex-start;
-  padding-left: 20px;
+  padding-left: 7vw;
 }
 button.preview-btn {
   width:120px;

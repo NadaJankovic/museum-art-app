@@ -6,17 +6,11 @@ class MainService extends BaseService {
     }
     async getCollection() {
         try {
-            // check if tree data exists in local storage; if so, use data from local storage, if not call api;
-            const treeData = localStorage.getItem('treeData');
-            if (treeData) {
-                const parsedData = JSON.parse(treeData);
-                return parsedData;
-            } else {
-                const response = await fetch(`${this.backendURl}/getCollection`);
-                const data = await response.json();
-                localStorage.setItem('treeData', JSON.stringify(data))
-                return JSON.parse(localStorage.getItem('treeData'))
-            }
+            const response = await fetch(`${this.backendURl}/getCollection`);
+            const data = await response.json();
+            const treeData = localStorage.setItem('treeData', JSON.stringify(data.tree));
+            const departInfo = localStorage.setItem('departInfo', JSON.stringify(data.collection))
+            return ({ tree: data.tree,depart:data.collection })
         } catch (err) {
             console.log(err)
         }

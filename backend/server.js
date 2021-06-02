@@ -14,7 +14,7 @@ const collection= require('./collection')
 // get all data from tree file
 app.get('/getCollection', (req, res) => {
     try{
-        return res.send(tree)
+        return res.send({tree:tree, collection:tree.collection})
     }catch(err){
         res.status(400).json({
             msg:'Some error occured'

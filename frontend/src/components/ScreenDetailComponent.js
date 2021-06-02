@@ -5,7 +5,7 @@ import { ServiceContext } from '../services/serviceContext';
 function ScreenDetailComponent(props) {
     const { itemId } = props;
     const { setArtItem } = props;
-    const { artItem } = props;
+    const { artItem } = props
     const service = useContext(ServiceContext);
     const [art, setArt] = useState([]);
 
@@ -31,7 +31,7 @@ function ScreenDetailComponent(props) {
         props.setShowEditComponent(true);
     }
 
-    if (art === undefined) { return <Typography variant='h5' color='textSecondary'> Choose art peace from the list.</Typography> }
+    if (art=== undefined) { return <Typography variant='h5' color='textSecondary'> Choose art peace from the list.</Typography> }
     return (
         <div>
             {art.map(el =>

@@ -5,18 +5,19 @@ function Edit_PreviewItem(props) {
     const { artItem } = props;
     const { setArtItem } = props;
     const { setShowEditComponent } = props;
-    const { setDepartmentInfo } = props;
     const [showPreview, setShowPreview] = useState(false);
     const [editedArt, setEditedArt] = useState(artItem);
     // validation state objects
-    const [titleError, setTitleError] = useState({ shortInput: '', notValid: false });
-    const [urlError, setUrlError] = useState({ shortInput: '', notValid: false });
-    const [descriptionError, setDescriptionError] = useState({ shortInput: '', notValid: false });
+    const [titleError, setTitleError] = useState({});
+    const [urlError, setUrlError] = useState({});
+    const [descriptionError, setDescriptionError] = useState({});
     console.log(editedArt.name)
 
     const validate = () => {
-       
         let isValid = true;
+        const titleError = {};
+        const urlError = {};
+        const descriptionError = {};
         if (editedArt.name === '') {
             titleError.shortInput = 'Empty Field Not Allowed';
             titleError.notValid = true;
@@ -41,10 +42,9 @@ function Edit_PreviewItem(props) {
     }
 
     const saveItem = (e) => {
+        e.preventDefault();
         let err = validate();
-        if (!err) {
-            e.preventDefault();
-        } else {
+        if(err){
             // find if item exists in storage and update it with edited object
             let storageCollection = JSON.parse(localStorage.getItem('artItem'));
             if (!storageCollection) {
@@ -89,48 +89,37 @@ function Edit_PreviewItem(props) {
             <div className='edit-form-container'>
                 <form onSubmit={saveItem} noValidate >
                     <div className='edit-input-field'>
-                        <FormControl>
                             <TextField
                                 className='input-text'
                                 label="Title"
                                 name='name'
                                 variant="outlined"
-                                required
                                 onChange={handleChange}
                                 value={editedArt.name}
                                 error={titleError.notValid}
                                 helperText={titleError.shortInput}
-
                             />
-                        </FormControl>
-                        <FormControl>
                             <TextField
                                 className='input-text'
                                 label="Image URL"
                                 name='url'
                                 variant="outlined"
-                                required
                                 onChange={handleChange}
                                 value={editedArt.url}
                                 error={urlError.notValid}
-                                helperText={titleError.shortInput}
+                                helperText={urlError.shortInput}
                             />
-                        </FormControl>
-                        <FormControl>
                             <TextField
                                 className='input-text'
                                 multiline
-                                required
                                 label="Description"
                                 name='description'
                                 variant="outlined"
                                 onChange={handleChange}
                                 value={editedArt.description}
                                 error={descriptionError.notValid}
-                                helperText={urlError.shortInput}
+                                helperText={descriptionError.shortInput}
                             />
-                        </FormControl>
-
                     </div>
                     <div className='save-preview-btns'>
                         <Button type='submit' className='save-btn' color='primary' variant='contained' >Save</Button>
